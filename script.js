@@ -16,7 +16,7 @@ submitButton.addEventListener("click", async (event) => {
     
     
     for (let i = 0; i < urls.length; i++) {
-        await fetch("http://localhost/api/unlistedVideo", {
+        await fetch("https://sponsor.ajay.app/api/unlistedVideo", {
             method: "POST",
             body: JSON.stringify({
                 videoID: urls[i]
