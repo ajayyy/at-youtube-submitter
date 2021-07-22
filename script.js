@@ -4,6 +4,8 @@ const descriptionTextBox = document.getElementById("description");
 const submitButton = document.getElementById("submitButton");
 
 submitButton.addEventListener("click", async (event) => {
+    if (submitButton.classList.contains('disabled')) return;
+
     let videoIDs = [];
     const urls = textBox.value.split(/\r?\n/g);
     const rejects = [];
@@ -41,7 +43,9 @@ submitButton.addEventListener("click", async (event) => {
         });
     }
     const duplicateMsg = duplicateCount === 0 ? '' : " (ignoring " + duplicateCount + " duplicates)"
-    
+
+    submitButton.classList.add('disabled');
+
     const status = document.getElementById("status");
     status.innerText = "0/" + videoIDs.length + duplicateMsg;
     
@@ -62,6 +66,7 @@ submitButton.addEventListener("click", async (event) => {
         status.innerText = (i + 1) + "/" + videoIDs.length + duplicateMsg;
     }
     
+    submitButton.classList.remove('disabled');
     status.innerText = "Done!";
     
     textBox.value = "";
